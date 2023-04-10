@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class LectureController {
-	
+	//final => 상수: 초기화가 무조건 일어나야함.
 	private final LectureService lectureService;
 	
 	// Create
