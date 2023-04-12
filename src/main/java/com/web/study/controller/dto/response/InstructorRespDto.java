@@ -7,8 +7,8 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class LecturerRespDto {
-	private int id;
-	private String name;
-	private LocalDate birthDate;
+public class InstructorRespDto {
+	private int itm_id;
+	private String itm_name;
+	private LocalDate itm_birth;
 }
