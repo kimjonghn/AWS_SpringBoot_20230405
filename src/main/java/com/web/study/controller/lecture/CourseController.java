@@ -29,6 +29,9 @@ public class CourseController {
 	private final CourseService courseService;//상수
 	
 	@PostMapping("/course")
+	//ResponseEntity 응답하려고 return
+	//상태코드를 담을수 있음 응답 데이터를 담을수 있음 
+	//<? extends ResponseDto> 제네릭 => 데이터의 형태가 바뀔수 있으므로 ?를 씀
 	public ResponseEntity<? extends ResponseDto> registeCourse(@RequestBody CourseReqDto courseReqDto){
 		
 		courseService.registeCourse(courseReqDto);
