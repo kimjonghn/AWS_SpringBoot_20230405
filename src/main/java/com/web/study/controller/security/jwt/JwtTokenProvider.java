@@ -77,7 +77,7 @@ public class JwtTokenProvider {
 			.build()
 			.parseClaimsJws(token);
 			
-			return true;
+			return true; //catch가 일어나지 않으면 return은 true
 		}catch (SecurityException | MalformedJwtException e) {
 			//Security라이브러리에 오류가 있거나, 잘못된 형식의 JWT가 들어왔을 때 예외
 			//SignatureException이 포함되어있음
@@ -105,16 +105,15 @@ public class JwtTokenProvider {
 			throw new CustomException("권한 정보가 없는 토큰입니다.");
 		}
 		
-		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>(); //권한
 		
-		String[] rolesArray = roles.toString().split(",");
-		
+		String[] rolesArray = roles.toString().split(","); //쉼표로 잘라서 배열로 만들었다
+		//베열을 list로 바꿧다
 		Arrays.asList(rolesArray).forEach(role -> {
-			authorities.add(new SimpleGrantedAuthority(role));
+			authorities.add(new SimpleGrantedAuthority(role)); //List 에 담는다
 		});
 		
 		UserDetails userDetails = new User(claims.getSubject(), "", authorities);
-		
 		return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
 	}
 	private Claims parseClaims(String accessToken) {

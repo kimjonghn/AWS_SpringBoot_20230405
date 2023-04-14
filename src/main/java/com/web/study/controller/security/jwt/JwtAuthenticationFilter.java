@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean{
 		
 		if(validationFalg) {
 			Authentication authentication = jwtTokenProvider.getAuthentication(token);	
-			SecurityContextHolder.getContext().setAuthentication(authentication);
+			SecurityContextHolder.getContext().setAuthentication(authentication); //authentication 실행이 되야지만 인증이 된거다
 		}
 		
 		chain.doFilter(request, response);
@@ -44,7 +44,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean{
 		
 		//hasText 문자열이 null, 공백이 아닌지 확인
 		if(StringUtils.hasText(token) && token.startsWith(type)) {
-			return token.substring(type.length() + 1);
+			return token.substring(type.length() + 1); //앞에붙어있는 Bearer를 잘라낸다
 		}
 		return null;
 	}

@@ -41,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{ //Security정�
 			.anyRequest()
 			.authenticated()
 			.and()
-			.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+			// 여기서 jwtTokenProvider가 UsernamePasswordAuthenticationFilter로 전달했는데 실행이 안되면 밑에꺼가 실행됨
+			.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class) 
 			.exceptionHandling()
 			.authenticationEntryPoint(jwtAuthenticationEntryPoint);
 	}
